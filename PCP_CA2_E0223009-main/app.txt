@@ -1,0 +1,108 @@
+Dataset B - Fitness Tracker Activities 
+Each activity object obtains :
+1. activityId
+2. name
+3. steps
+4. caloriesBurned 
+5. workoutMinutes
+6. goalAcheived
+7. date
+
+Dataset contains inconsistent and invalid entires. students must handle them properly 
+Application requirements 
+U must build react applicaation using 
+1. react context
+2. useReducer
+3. React router
+
+
+Mandatory routes
+/activities
+/activities/:id
+/filter
+/stats
+
+
+Mandatory rules
+1. All data must be stored in context(single source of truth)
+2. All updates must go thryugh Reducer only 
+3. No hardcoding
+4. no storing dervied values in state
+5. must use map,filter,Reducer
+
+
+Testing requirements:
+1. Use below test-ids
+data-testid="total-activities"
+data-testid="goal-achieved"
+data-testid="goal-not-achieved"
+data-testid="activity-item"
+
+2. Exposed computed values 
+window.appState={
+    totalActivites,
+    goalAcheivedCount,
+    goalNOtAcheivedCount
+}
+
+Question1: Display valid Activities
+route:/activities
+
+requirements
+1. display only valid activities
+2. each activity must be shown using a reusable component
+
+Valid activity conditions:
+1. steps>0
+2. caloriesBurned >0
+3. workoutMinutes>0
+4. goalAcheived must be boolean
+
+Constraints
+1. must use .filter()
+2. must use context data
+3. must use mutate Dataset
+
+
+Edge cases:
+1. missing name -> display "Unknown"
+2. missing date -> display "No date"
+
+
+Question2 - Activty detauls view
+Route :/activities/:id
+
+requirements
+1. display full activity details
+2. calculate efficiency score
+
+Efficiency formula :
+efficiency=caloriesBurned/workoutMinutes
+
+Constraints
+1. must compute dynamically
+2. must validate ID
+
+
+Edge cases:
+1. Invalid ID -> display "Activity not found"
+2. division by zero -> haandle safely 
+
+
+Question3- FIlter activities
+route : /filter
+
+requirements
+1. Filter activities where : steps >= input values
+
+
+Constraints
+1. must use .filter()
+2. must be dynamic 
+3. must  not fetch data
+
+Validation:
+1. Empty input -> show error
+2. invalid input -> show  message
+
+Interdependecny : Must filter olny valid activities (Q1 rules)
